@@ -1,0 +1,58 @@
+// New QuazarScript Syntax
+@component TodoApp {
+  // State declarations with type hints
+  @state todos: array = [];
+  @state newTodo: string = "";
+
+  // Styles with enhanced CSS-like syntax
+  @style TodoItem {
+    target: div;
+    styles {
+      background: #f5f5f5;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      
+      &:hover {
+        background: #e0e0e0;
+      }
+    }
+  }
+
+  // Methods with arrow syntax
+  @method addTodo => {
+    if (newTodo.trim().length > 0) {
+      todos.push(newTodo);
+      newTodo = "";
+    }
+  }
+
+  // Effects with clear dependency syntax
+  @effect onTodosChange {
+    watch: [todos];
+    run: {
+      console.log('Todos updated:', todos);
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }
+
+  // Template with enhanced JSX-like syntax
+  @template {
+    <div class="todo-app">
+      <h1>Todo List</h1>
+      
+      <input 
+        @bind="newTodo"
+        @keypress.enter="addTodo()"
+        placeholder="Add new todo"
+      />
+      
+      <for each="todo" of="todos">
+        <TodoItem>
+          <text>{todo}</text>
+          <button @click="todos.remove(todo)">Delete</button>
+        </TodoItem>
+      </for>
+    </div>
+  }
+} 

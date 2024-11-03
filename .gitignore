@@ -1,0 +1,5 @@
+# ... existing entries ...
+dist/bin/
+temp/
+.nexe 
+node_modules

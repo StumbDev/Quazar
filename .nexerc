@@ -1,0 +1,20 @@
+{
+  "input": "Main.js",
+  "output": "dist/bin/quazar",
+  "resources": [
+    "src/**/*",
+    "package.json"
+  ],
+  "build": true,
+  "patches": [
+    {
+      "search": "process.versions.node",
+      "replace": "\"14.15.3\"",
+      "flags": "g"
+    }
+  ],
+  "nodeVersion": "14.15.3",
+  "framework": "node",
+  "enableNodeCli": true,
+  "temp": "temp"
+} 
